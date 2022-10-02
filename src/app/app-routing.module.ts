@@ -1,10 +1,33 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {ProductsComponent} from "./products/products.component";
+import {AppComponent} from "./app.component";
+import {AdminComponent} from "./admin/admin.component";
+import {CartComponent} from "./cart/cart.component";
+import {AdminUsersComponent} from "./admin/admin-users/admin-users.component";
+import {SignUpComponent} from "./sign-up/sign-up.component";
+import {SignInComponent} from "./sign-in/sign-in.component";
+import {NotFoundComponent} from "./not-found/not-found.component";
 
-const routes: Routes = [];
+const routes: Routes = [
+  {path: '', pathMatch: 'full', redirectTo: 'products'},
+  {path: 'products', component: ProductsComponent},
+  {
+    path: 'admin',
+    children: [
+      {path: 'products', component: AdminComponent},
+      {path: 'users', component: AdminUsersComponent}
+    ]
+  },
+  {path: 'cart', component: CartComponent},
+  {path: 'sign-up', component: SignUpComponent},
+  {path: 'sign-in', component: SignInComponent},
+  {path: '**', component: NotFoundComponent}
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

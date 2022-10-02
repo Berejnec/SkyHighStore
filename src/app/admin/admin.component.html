@@ -1,0 +1,45 @@
+<div class="mb-3">
+  <button pButton label="Add new product" class="p-button-raised add-button" (click)="openAddDialog()"></button>
+</div>
+
+<div class="card" *ngIf="authService.isLoggedIn; else notLoggedIn">
+  <p-table [value]="products" responsiveLayout="scroll">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Details</th>
+        <th>Price</th>
+        <th>Actions</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product>
+      <tr>
+        <td>{{product.id}}</td>
+        <td>{{product.productName }}</td>
+        <td>{{product.details }}</td>
+        <td>{{product.price | currency: 'USD'}}</td>
+        <td>
+          <button pButton icon="pi pi-trash" class="p-button-outlined mr-2 p-2"
+                  (click)="deleteProduct(product)"></button>
+          <button pButton icon="pi pi-pencil" class="p-button-outlined mr-2 p-2"></button>
+          <button pButton icon="pi pi-plus" class="p-button-outlined p-2" (click)="addProduct(product)"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<ng-template #notLoggedIn>
+  <h1>Log in before you can manage products</h1>
+</ng-template>
+
+<p-dialog header="Add new product"
+          [(visible)]="display"
+          [dismissableMask]="true"
+          [closeOnEscape]="true"
+          [modal]="true"
+          [baseZIndex]="200000"
+>
+
+</p-dialog>

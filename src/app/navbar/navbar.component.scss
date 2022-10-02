@@ -1,0 +1,14 @@
+.icon {
+  font-size: 2rem;
+}
+
+.black-color {
+  color: black;
+}
+
+.navbar-button {
+  &:hover {
+    background: #e9ecef !important;
+    color: black !important;
+  }
+}

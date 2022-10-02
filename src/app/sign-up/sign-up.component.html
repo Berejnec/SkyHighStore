@@ -1,0 +1,21 @@
+<h1>Sign Up</h1>
+
+<div class="container">
+  <div class="col-12 col-md-4">
+    <div class="p-inputgroup">
+      <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+      <input type="email" pInputText placeholder="Email" #email>
+    </div>
+  </div>
+
+  <div class="col-12 col-md-4 mt-3">
+    <div class="p-inputgroup">
+      <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
+      <input type="password" pInputText placeholder="Password" #password>
+    </div>
+  </div>
+
+  <div class="col-12 col-md-4 mt-3">
+    <button pButton label="Sign up" (click)="signUp(email.value, password.value)"></button>
+  </div>
+</div>
