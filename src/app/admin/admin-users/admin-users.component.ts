@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {IUser} from "../../interfaces/user.interface";
 import {UserService} from "../../services/user.service";
 import {AuthService} from "../../services/auth.service";
+import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-admin-users',
@@ -24,10 +25,6 @@ export class AdminUsersComponent implements OnInit {
 
   deleteUser(user: IUser) {
     this.userService.deleteUser(user);
-  }
-
-  addUser(user: IUser) {
-    this.userService.addUser(user);
   }
 
   openAddDialog() {

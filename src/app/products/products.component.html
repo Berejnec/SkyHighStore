@@ -1,22 +1,53 @@
 <h1 class="title">Products</h1>
+<div class="card">
+  <p-dataView #dv [value]="products" [paginator]="true" [rows]="9" filterBy="productName" layout="grid">
 
-<div class="row card-gap justify-content-center">
-  <div class="flex-start" *ngFor="let product of products$ | async">
-    <p-card [header]="product.productName" subheader="Details" [style]="{width: '300px', height: 'fit-content'}"
-            styleClass="p-card-shadow">
-      <ng-template pTemplate="header">
-      </ng-template>
-      <p>Id: {{product.id}}</p>
-      <ng-template pTemplate="footer">
-        <div class="d-flex justify-content-end">
-          <button pButton label="Details" icon="pi pi-info-circle"
-                  class="p-button-text p-button-secondary p-2"></button>
-          <button pButton label="Buy" icon="pi pi-shopping-cart" class="p-button-raised p-2 ml-2 buy-button"></button>
+    <ng-template pTemplate="header">
+      <div class="d-flex flex-column">
+      <span class="p-input-icon-left mb-2 md:mb-0">
+                  <i class="pi pi-search"></i>
+                  <input #inputValue type="search" pInputText placeholder="Search by Name"
+                         (input)="dv.filter(inputValue.value)">
+              </span>
+        <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+      </div>
+    </ng-template>
+
+    <ng-template let-product pTemplate="listItem">
+      <div class="col-12">
+        <div class="product-list-item">
+          <div class="product-list-detail">
+            <div class="product-name">{{product.productName}}</div>
+            <div class="product-description">{{product.details}}</div>
+            <span class="product-price">${{product.price}}</span>
+          </div>
+          <div class="product-list-action">
+            <button pButton label="Add to Cart" class="p-button-raised text-center full-width" (click)="addToCart(product)"></button>
+          </div>
         </div>
+      </div>
+    </ng-template>
 
-      </ng-template>
-    </p-card>
-  </div>
+    <ng-template let-product pTemplate="gridItem">
+      <div class="col-12 col-md-4 mt-4 d-inline-flex flex-column">
+        <div class="product-grid-item card full-width full-height">
+          <div class="product-grid-item-top">
+            <div>
+              <i class="pi pi-tag product-category-icon"></i>
+            </div>
+          </div>
+          <div class="product-grid-item-content">
+            <div class="product-name">{{product.productName}}</div>
+            <div class="product-description">{{product.details}}</div>
+          </div>
+          <div class="product-grid-item-bottom">
+            <span class="product-price">${{product.price}}</span>
+          </div>
+        </div>
+        <button pButton label="Add to Cart" class="p-button-raised text-center full-width" (click)="addToCart(product)"></button>
+      </div>
+    </ng-template>
+  </p-dataView>
 
 </div>
 

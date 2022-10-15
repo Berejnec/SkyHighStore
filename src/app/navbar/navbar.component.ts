@@ -28,7 +28,6 @@ export class NavbarComponent implements OnInit {
       {
         label: 'Admin panel',
         icon: 'pi pi-user',
-        visible: true,
         items: [
           {
             label: 'Toate produsele',

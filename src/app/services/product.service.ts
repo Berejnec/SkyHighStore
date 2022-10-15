@@ -1,7 +1,17 @@
 import {Injectable} from '@angular/core';
 import {IProduct} from "../interfaces/product.interface";
 import {Observable} from "rxjs";
-import {addDoc, collection, collectionData, deleteDoc, doc, Firestore, setDoc} from '@angular/fire/firestore'
+import {
+  addDoc,
+  collection,
+  collectionData,
+  deleteDoc,
+  doc,
+  docData,
+  Firestore,
+  setDoc,
+  updateDoc
+} from '@angular/fire/firestore'
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +33,11 @@ export class ProductService {
     return collectionData(productsRef, {idField: 'id'}) as Observable<IProduct[]>;
   }
 
+  getProductById(id: string) {
+    const productRef = doc(this.fireStore, `products/${id}`);
+    return docData(productRef, { idField: 'id'}) as Observable<IProduct>;
+  }
+
   deleteProduct(product: IProduct) {
     const productDocRef = doc(this.fireStore, `products/${product.id}`);
     return deleteDoc(productDocRef);
@@ -31,5 +46,10 @@ export class ProductService {
   updateProduct(product: IProduct) {
     const productDocRef = doc(this.fireStore, `products/${product.id}`);
     return setDoc(productDocRef, product);
+  }
+
+  modifyProductPrice(product: IProduct, amount: number) {
+    const productDocRef = doc(this.fireStore, `products/${product.id}`);
+    return updateDoc(productDocRef, { price: amount});
   }
 }

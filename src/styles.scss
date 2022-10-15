@@ -12,10 +12,13 @@ body {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  background-image: url("/assets/clouds.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
+  //background: url('assets/bg5.png') no-repeat center center fixed;
+  background: rgba(64, 224, 208, 0.2);
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
+
 }
 
 .full-width {
@@ -50,8 +53,6 @@ body {
   0px 3.4px 17.9px rgba(0, 0, 0, 0.042),
   0px 6.3px 33.4px rgba(0, 0, 0, 0.05),
   0px 15px 80px rgba(0, 0, 0, 0.07);
-
-
 }
 
 .add-button {
@@ -88,4 +89,9 @@ body {
 
 .p-menubar {
   border: 0 !important;
+}
+
+.p-dialog {
+  width: 500px !important;
+  height: 400px !important;
 }

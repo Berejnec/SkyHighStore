@@ -1,1 +1,5 @@
-<p>cart works!</p>
+<div *ngFor="let cartProduct of cart" style="gap: 10px">
+  <span>{{cartProduct.productName}} - </span>
+  <span>{{cartProduct.price}} - </span>
+  <span>{{cartProduct.id}}</span>
+</div>

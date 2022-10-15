@@ -1,42 +1,37 @@
-<div class="mb-3">
-  <button pButton label="Add new user" class="p-button-raised add-button" (click)="openAddDialog()"></button>
+<div class="pt-5">
+  <div *ngIf="authService.isLoggedIn; else notLoggedIn">
+
+    <div class="card">
+      <p-table [value]="users" responsiveLayout="scroll">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>ID</th>
+            <th>Email</th>
+            <th>Join Date</th>
+            <th>Actions</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-user>
+          <tr>
+            <td>{{user.uid}}</td>
+            <td>{{user.email }}</td>
+            <td *ngIf="user.joinDate; else blankJoinDate">{{user.joinDate.toDate() | date: 'dd-MM-yyyy HH:mm:ss'}}</td>
+            <ng-template #blankJoinDate>
+              <td>{{user.joinDate}}</td>
+            </ng-template>
+            <td>
+              <button pButton icon="pi pi-trash" class="p-button-outlined mr-2 p-2" (click)="deleteUser(user)"></button>
+              <button pButton icon="pi pi-pencil" class="p-button-outlined mr-2 p-2"></button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+
+    </div>
+  </div>
 </div>
 
-<div class="card" *ngIf="authService.isLoggedIn; else notLoggedIn">
-  <p-table [value]="users" responsiveLayout="scroll">
-    <ng-template pTemplate="header">
-      <tr>
-        <th>ID</th>
-        <th>Email</th>
-        <th>Display Name</th>
-        <th>Actions</th>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-user>
-      <tr>
-        <td>{{user.uid}}</td>
-        <td>{{user.email }}</td>
-        <td>{{user.displayName }}</td>
-        <td>
-          <button pButton icon="pi pi-trash" class="p-button-outlined mr-2 p-2" (click)="deleteUser(user)"></button>
-          <button pButton icon="pi pi-pencil" class="p-button-outlined mr-2 p-2"></button>
-          <button pButton icon="pi pi-plus" class="p-button-outlined p-2" (click)="addUser(user)"></button>
-        </td>
-      </tr>
-    </ng-template>
-  </p-table>
-</div>
 
 <ng-template #notLoggedIn>
   <h1>Log in before you can manage users</h1>
 </ng-template>
-
-<p-dialog header="Add new user"
-          [(visible)]="display"
-          [dismissableMask]="true"
-          [closeOnEscape]="true"
-          [modal]="true"
-          [baseZIndex]="200000"
->
-
-</p-dialog>

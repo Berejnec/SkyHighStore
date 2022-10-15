@@ -3,6 +3,7 @@ import {AngularFirestore, AngularFirestoreDocument} from "@angular/fire/compat/f
 import {AngularFireAuth} from "@angular/fire/compat/auth";
 import {Router} from "@angular/router";
 import {IUser} from "../interfaces/user.interface";
+import {MessageService} from "primeng/api";
 
 @Injectable({
   providedIn: 'root'
@@ -11,11 +12,14 @@ export class AuthService {
 
   userData: any;
 
+  public userUid: string | undefined | null = null;
+
   constructor(
     public afs: AngularFirestore,
     public afAuth: AngularFireAuth,
     public router: Router,
-    public ngZone: NgZone
+    public ngZone: NgZone,
+    private messageService: MessageService
   ) {
     this.afAuth.authState.subscribe((user) => {
       if (user) {
@@ -42,11 +46,12 @@ export class AuthService {
       this.afAuth.authState.subscribe((user) => {
         if (user) {
           this.router.navigate(['products']);
+          this.onSuccessSignIn();
         }
       })
     })
       .catch((error) => {
-        window.alert(error.message);
+        this.onFailedSignIn();
       })
   }
 
@@ -57,7 +62,8 @@ export class AuthService {
     const userData: IUser = {
       uid: user.uid,
       email: user.email,
-      displayName: user.displayName
+      displayName: user.displayName,
+      joinDate: new Date()
     };
 
     return userRef.set(userData, {merge: true});
@@ -74,4 +80,33 @@ export class AuthService {
     const user = JSON.parse(localStorage.getItem('user')!);
     return user !== null;
   }
+
+  getUserUid() {
+    // let userUid;
+    // this.afAuth.authState.subscribe(user => {
+    //   userUid = user?.uid;
+    // })
+    // this.afAuth.currentUser.then(data => console.log(data?.multiFactor));
+    this.afAuth.authState.subscribe(data => this.userUid = data?.uid);
+  }
+
+  onSuccessSignIn() {
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Log in successful',
+      detail: 'Enjoy our products!',
+      life: 4000
+    })
+    console.log('auth service message');
+  }
+
+  onFailedSignIn() {
+    this.messageService.add({
+      severity: 'error',
+      summary: 'Sign-in failed',
+      detail: 'Verify your credentials and try again!',
+      life: 4000
+    })
+  }
+
 }

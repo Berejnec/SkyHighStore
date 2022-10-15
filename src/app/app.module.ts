@@ -35,6 +35,11 @@ import {AuthService} from "./services/auth.service";
 import {SignUpComponent} from './sign-up/sign-up.component';
 import {SignInComponent} from './sign-in/sign-in.component';
 import {NotFoundComponent} from './not-found/not-found.component';
+import {ToastModule} from "primeng/toast";
+import {MessageService} from "primeng/api";
+import {FormsModule} from "@angular/forms";
+import {DataViewModule} from "primeng/dataview";
+import { EditProductDialogComponent } from './admin/edit-product-dialog/edit-product-dialog.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +51,8 @@ import {NotFoundComponent} from './not-found/not-found.component';
     AdminUsersComponent,
     SignUpComponent,
     SignInComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    EditProductDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -65,9 +71,12 @@ import {NotFoundComponent} from './not-found/not-found.component';
     SkeletonModule,
     TableModule,
     DialogModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ToastModule,
+    FormsModule,
+    DataViewModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

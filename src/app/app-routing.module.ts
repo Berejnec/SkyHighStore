@@ -10,7 +10,7 @@ import {SignInComponent} from "./sign-in/sign-in.component";
 import {NotFoundComponent} from "./not-found/not-found.component";
 
 const routes: Routes = [
-  {path: '', pathMatch: 'full', redirectTo: 'products'},
+  {path: '', pathMatch: 'full', redirectTo: 'sign-in'},
   {path: 'products', component: ProductsComponent},
   {
     path: 'admin',

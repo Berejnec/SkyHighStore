@@ -4,6 +4,7 @@ import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {IProduct} from "../interfaces/product.interface";
 import {ProductService} from "../services/product.service";
 import {AuthService} from "../services/auth.service";
+import {CartService} from "../services/cart.service";
 
 @Component({
   selector: 'app-products',
@@ -14,16 +15,26 @@ export class ProductsComponent implements OnInit {
 
   products$: Observable<IProduct[]> | null = null;
 
+  products: IProduct[] = [];
+
   constructor(private dataBase: AngularFirestore,
               public authService: AuthService,
-              private productService: ProductService) {
+              private productService: ProductService,
+              private cartService: CartService) {
+    this.authService.getUserUid();
   }
 
   ngOnInit(): void {
-    this.products$ = this.productService.getProducts();
+    this.productService.getProducts().subscribe(res => this.products = res);
   }
 
-  onSubmit() {
+  buyProduct(product: IProduct) {
+    this.cartService.buyProduct(product);
+    console.log('bought', product);
+  }
 
+  addToCart(product: IProduct) {
+    this.cartService.addToCart(product);
+    console.log(this.authService.userUid, product);
   }
 }

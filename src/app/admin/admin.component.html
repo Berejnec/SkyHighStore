@@ -1,33 +1,40 @@
-<div class="mb-3">
-  <button pButton label="Add new product" class="p-button-raised add-button" (click)="openAddDialog()"></button>
-</div>
+<div *ngIf="authService.isLoggedIn; else notLoggedIn">
+  <div class="mb-3">
+    <button pButton label="Add new product" class="p-button-raised add-button" (click)="openAddDialog()"></button>
+  </div>
 
-<div class="card" *ngIf="authService.isLoggedIn; else notLoggedIn">
-  <p-table [value]="products" responsiveLayout="scroll">
-    <ng-template pTemplate="header">
-      <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Details</th>
-        <th>Price</th>
-        <th>Actions</th>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-product>
-      <tr>
-        <td>{{product.id}}</td>
-        <td>{{product.productName }}</td>
-        <td>{{product.details }}</td>
-        <td>{{product.price | currency: 'USD'}}</td>
-        <td>
-          <button pButton icon="pi pi-trash" class="p-button-outlined mr-2 p-2"
-                  (click)="deleteProduct(product)"></button>
-          <button pButton icon="pi pi-pencil" class="p-button-outlined mr-2 p-2"></button>
-          <button pButton icon="pi pi-plus" class="p-button-outlined p-2" (click)="addProduct(product)"></button>
-        </td>
-      </tr>
-    </ng-template>
-  </p-table>
+  <div class="card">
+    <p-table [value]="products" responsiveLayout="scroll"
+             [paginator]="true"
+             [rows]="10"
+
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Details</th>
+          <th>Price</th>
+          <th>Actions</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-product>
+        <tr>
+          <td>{{product.id}}</td>
+          <td>{{product.productName }}</td>
+          <td>{{product.details }}</td>
+          <td>{{product.price | currency: 'USD'}}</td>
+          <td>
+            <button pButton icon="pi pi-pencil" class="p-button-outlined mr-2 p-2" (click)="openEditProductDialog(product.id, product.productName, product.details, product.price)"></button>
+            <button pButton icon="pi pi-trash" class="p-button-outlined mr-2 p-2"
+                    (click)="deleteProduct(product)"></button>
+          </td>
+        </tr>
+
+      </ng-template>
+    </p-table>
+
+  </div>
 </div>
 
 <ng-template #notLoggedIn>
@@ -39,7 +46,50 @@
           [dismissableMask]="true"
           [closeOnEscape]="true"
           [modal]="true"
-          [baseZIndex]="200000"
->
+          [baseZIndex]="200000">
 
 </p-dialog>
+
+<p-dialog header="Edit product"
+          [(visible)]="displayEdit"
+          [closeOnEscape]="true"
+          [modal]="true"
+          [resizable]="false"
+          [draggable]="false"
+          height="500px"
+          [baseZIndex]="200000">
+
+  <div class="container">
+    <h4>Edit product record</h4>
+    <form #productForm="ngForm" (ngSubmit)="onUpdate(name.value, details.value, price.value)">
+      <div class="form-group">
+        <label>Product Name</label>
+        <input class="form-control" name="productName"
+               #name
+               [value]="precompleteName"
+               placeholder="Product Name" required>
+      </div>
+
+      <div class="form-group">
+        <label>Details</label>
+        <input [value]="precompleteDetails" #details class="form-control" name="details" placeholder="Details" required>
+      </div>
+
+      <div class="form-group">
+        <label>Price</label>
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="bi bi-currency-dollar"></i>
+          </div>
+                    <input [value]="precompletePrice" class="form-control" name="price" #price placeholder="Price" required>
+        </div>
+      </div>
+
+      <div class="form-group float-right">
+        <button pButton type="submit" class="p-button-raised" [disabled]="!productForm.valid">Update Product</button>
+      </div>
+    </form>
+  </div>
+
+</p-dialog>
+
