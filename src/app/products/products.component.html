@@ -1,6 +1,6 @@
 <h1 class="title">Products</h1>
-<div class="card">
-  <p-dataView #dv [value]="products" [paginator]="true" [rows]="9" filterBy="productName" layout="grid">
+<div class="card-2">
+  <p-dataView #dv [value]="products" [paginator]="true" [rows]="6" filterBy="productName" layout="grid">
 
     <ng-template pTemplate="header">
       <div class="d-flex flex-column">
@@ -16,13 +16,15 @@
     <ng-template let-product pTemplate="listItem">
       <div class="col-12">
         <div class="product-list-item">
+          <img src="assets/head2.png" alt="product">
           <div class="product-list-detail">
             <div class="product-name">{{product.productName}}</div>
             <div class="product-description">{{product.details}}</div>
             <span class="product-price">${{product.price}}</span>
           </div>
           <div class="product-list-action">
-            <button pButton label="Add to Cart" class="p-button-raised text-center full-width" (click)="addToCart(product)"></button>
+            <button pButton label="Add to Cart" class="p-button-raised text-center full-width"
+                    (click)="addToCart(product)"></button>
           </div>
         </div>
       </div>
@@ -30,10 +32,11 @@
 
     <ng-template let-product pTemplate="gridItem">
       <div class="col-12 col-md-4 mt-4 d-inline-flex flex-column">
-        <div class="product-grid-item card full-width full-height">
+        <div class="product-grid-item card-2 full-width full-height">
           <div class="product-grid-item-top">
+            <img src="assets/head2.png" alt="product">
             <div>
-              <i class="pi pi-tag product-category-icon"></i>
+              <span style="font-weight: bolder"><i class="pi pi-tag product-category-icon"></i>Electronics</span>
             </div>
           </div>
           <div class="product-grid-item-content">
@@ -41,10 +44,12 @@
             <div class="product-description">{{product.details}}</div>
           </div>
           <div class="product-grid-item-bottom">
-            <span class="product-price">${{product.price}}</span>
+            <span class="product-price">{{product.price | currency: 'USD'}}</span>
+            <button pButton pTooltip="Add to Cart" tooltipPosition="top" icon="pi pi-shopping-cart" class="p-button-raised cart-button"
+                    (click)="addToCart(product)"></button>
           </div>
         </div>
-        <button pButton label="Add to Cart" class="p-button-raised text-center full-width" (click)="addToCart(product)"></button>
+
       </div>
     </ng-template>
   </p-dataView>

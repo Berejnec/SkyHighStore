@@ -37,9 +37,11 @@ import {SignInComponent} from './sign-in/sign-in.component';
 import {NotFoundComponent} from './not-found/not-found.component';
 import {ToastModule} from "primeng/toast";
 import {MessageService} from "primeng/api";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {DataViewModule} from "primeng/dataview";
 import { EditProductDialogComponent } from './admin/edit-product-dialog/edit-product-dialog.component';
+import {OrderListModule} from "primeng/orderlist";
+import {DropdownModule} from "primeng/dropdown";
 
 @NgModule({
   declarations: [
@@ -74,7 +76,10 @@ import { EditProductDialogComponent } from './admin/edit-product-dialog/edit-pro
     BrowserAnimationsModule,
     ToastModule,
     FormsModule,
-    DataViewModule
+    DataViewModule,
+    OrderListModule,
+    DropdownModule,
+    ReactiveFormsModule
   ],
   providers: [AuthService, MessageService],
   bootstrap: [AppComponent]

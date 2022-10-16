@@ -1,5 +1,34 @@
-<div *ngFor="let cartProduct of cart" style="gap: 10px">
-  <span>{{cartProduct.productName}} - </span>
-  <span>{{cartProduct.price}} - </span>
-  <span>{{cartProduct.id}}</span>
-</div>
+<!--<div *ngFor="let cartProduct of cart" style="gap: 10px">-->
+<!--  <span>{{cartProduct.productName}} - </span>-->
+<!--  <span>{{cartProduct.price}} - </span>-->
+<!--  <span>{{cartProduct.id}}</span>-->
+<!--</div>-->
+
+<p-orderList [value]="cart">
+  <ng-template let-product pTemplate="item">
+    <div>
+      {{product.productName}} - {{product.price}}
+    </div>
+  </ng-template>
+
+
+</p-orderList>
+<button pButton label="Place order" class="p-button-outlined" (click)="placeOrder()"></button>
+
+<p-dialog
+  header="Place order"
+  [(visible)]="displayPlaceOrder"
+  [closeOnEscape]="true"
+  [modal]="true"
+  [resizable]="false"
+  [draggable]="false"
+  [baseZIndex]="200000"
+>
+  <h2>Are you sure about your order?</h2>
+
+  <div>
+    <button pButton label="Cancel" class="p-button-outlined" (click)="closeOrderDialog()"></button>
+    <button pButton label="Yes" class="p-button-raised" (click)="confirmOrder()"></button>
+  </div>
+
+</p-dialog>

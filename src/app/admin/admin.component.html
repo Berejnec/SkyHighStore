@@ -3,11 +3,19 @@
     <button pButton label="Add new product" class="p-button-raised add-button" (click)="openAddDialog()"></button>
   </div>
 
+  <div class="d-flex mb-2">
+        <span class="p-input-icon-left">
+            <i class="pi pi-search"></i>
+            <input pInputText type="text" #filterText (input)="dt.filterGlobal(filterText.value, 'contains')" placeholder="Search product" />
+        </span>
+  </div>
+
   <div class="card">
     <p-table [value]="products" responsiveLayout="scroll"
              [paginator]="true"
-             [rows]="10"
-
+             [rows]="7"
+             #dt
+             [globalFilterFields]="['productName']"
     >
       <ng-template pTemplate="header">
         <tr>
@@ -25,9 +33,10 @@
           <td>{{product.details }}</td>
           <td>{{product.price | currency: 'USD'}}</td>
           <td>
-            <button pButton icon="pi pi-pencil" class="p-button-outlined mr-2 p-2" (click)="openEditProductDialog(product.id, product.productName, product.details, product.price)"></button>
+            <button pButton icon="pi pi-pencil" class="p-button-outlined mr-2 p-2"
+                    (click)="openEditProductDialog(product.id, product.productName, product.details, product.price)"></button>
             <button pButton icon="pi pi-trash" class="p-button-outlined mr-2 p-2"
-                    (click)="deleteProduct(product)"></button>
+                    (click)="onDeleteProduct()"></button>
           </td>
         </tr>
 
@@ -48,6 +57,36 @@
           [modal]="true"
           [baseZIndex]="200000">
 
+  <div class="container">
+    <form #addProductForm="ngForm" (ngSubmit)="onAdd(name.value, details.value, price.value)">
+      <div class="d-flex flex-column">
+        <label>Product Name</label>
+        <input class="form-control" name="productName"
+               #name
+               pInputText
+               placeholder="Product Name" required>
+      </div>
+
+      <div class="d-flex flex-column mt-2">
+        <label>Details</label>
+        <input class="form-control" pInputText #details name="details" placeholder="Details" required>
+      </div>
+
+      <div class="d-flex flex-column mt-2">
+        <label>Price</label>
+        <div class="input-group">
+          <div class="input-group-addon">
+            <input class="form-control full-width" pInputText name="price" #price placeholder="Price" required>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-3">
+        <button type="submit" pButton label="Add product" class="p-button-raised" [disabled]="!addProductForm.valid"></button>
+      </div>
+    </form>
+  </div>
+
 </p-dialog>
 
 <p-dialog header="Edit product"
@@ -56,37 +95,41 @@
           [modal]="true"
           [resizable]="false"
           [draggable]="false"
-          height="500px"
           [baseZIndex]="200000">
 
   <div class="container">
-    <h4>Edit product record</h4>
     <form #productForm="ngForm" (ngSubmit)="onUpdate(name.value, details.value, price.value)">
-      <div class="form-group">
+      <div class="d-flex flex-column">
         <label>Product Name</label>
         <input class="form-control" name="productName"
                #name
                [value]="precompleteName"
+               pInputText
                placeholder="Product Name" required>
       </div>
 
-      <div class="form-group">
+      <div class="d-flex flex-column">
         <label>Details</label>
-        <input [value]="precompleteDetails" #details class="form-control" name="details" placeholder="Details" required>
+        <input [value]="precompleteDetails" #details pInputText class="form-control" name="details" placeholder="Details" required>
       </div>
 
-      <div class="form-group">
+      <div class="d-flex flex-column mb-2">
         <label>Price</label>
         <div class="input-group">
           <div class="input-group-addon">
             <i class="bi bi-currency-dollar"></i>
           </div>
-                    <input [value]="precompletePrice" class="form-control" name="price" #price placeholder="Price" required>
+          <input [value]="precompletePrice" pInputText class="form-control full-width" name="price" #price placeholder="Price" required>
         </div>
       </div>
 
       <div class="form-group float-right">
-        <button pButton type="submit" class="p-button-raised" [disabled]="!productForm.valid">Update Product</button>
+        <button pButton type="submit"
+                class="p-button-raised"
+                [ngClass]="{'p-disabled': !productForm.valid}"
+                [disabled]="!productForm.valid">
+          Update Product
+        </button>
       </div>
     </form>
   </div>

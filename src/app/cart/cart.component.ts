@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CartService} from "../services/cart.service";
 import {Observable} from "rxjs";
 import {IProduct} from "../interfaces/product.interface";
 import {AuthService} from "../services/auth.service";
+import {MessageService} from "primeng/api";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-cart',
@@ -15,8 +17,12 @@ export class CartComponent implements OnInit {
 
   cart: { price: string; id: string; productName: string }[] = [];
 
+  displayPlaceOrder: boolean = false;
+
   constructor(private cartService: CartService,
-              private auth: AuthService) {
+              private auth: AuthService,
+              private messageService: MessageService,
+              private router: Router) {
     this.auth.getUserUid();
   }
 
@@ -38,5 +44,25 @@ export class CartComponent implements OnInit {
     // console.log(uid);
   }
 
+  placeOrder() {
+    this.displayPlaceOrder = true;
+  }
 
+
+  closeOrderDialog() {
+    this.displayPlaceOrder = false;
+  }
+
+  confirmOrder() {
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Your order has been registered!',
+      detail: 'Thank you for choosing us!',
+      life: 5000
+    })
+    this.displayPlaceOrder = false;
+    setTimeout(() => {
+      this.router.navigate(['products']);
+    }, 1500);
+  }
 }

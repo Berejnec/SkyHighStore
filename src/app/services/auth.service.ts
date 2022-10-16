@@ -52,6 +52,7 @@ export class AuthService {
     })
       .catch((error) => {
         this.onFailedSignIn();
+        console.log(error);
       })
   }
 
@@ -82,11 +83,6 @@ export class AuthService {
   }
 
   getUserUid() {
-    // let userUid;
-    // this.afAuth.authState.subscribe(user => {
-    //   userUid = user?.uid;
-    // })
-    // this.afAuth.currentUser.then(data => console.log(data?.multiFactor));
     this.afAuth.authState.subscribe(data => this.userUid = data?.uid);
   }
 
@@ -96,8 +92,7 @@ export class AuthService {
       summary: 'Log in successful',
       detail: 'Enjoy our products!',
       life: 4000
-    })
-    console.log('auth service message');
+    });
   }
 
   onFailedSignIn() {
@@ -106,7 +101,7 @@ export class AuthService {
       summary: 'Sign-in failed',
       detail: 'Verify your credentials and try again!',
       life: 4000
-    })
+    });
   }
 
 }

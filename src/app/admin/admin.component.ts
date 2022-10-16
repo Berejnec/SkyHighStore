@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ProductService} from "../services/product.service";
 import {IProduct} from "../interfaces/product.interface";
 import {AuthService} from "../services/auth.service";
+import {MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-admin',
@@ -27,15 +28,17 @@ export class AdminComponent implements OnInit {
   product: IProduct = {
     price: "", productName: ""
   };
+  displayDeleteProduct: boolean = false;
 
   constructor(private productService: ProductService,
-              public authService: AuthService) {
+              public authService: AuthService,
+              private messageService: MessageService) {
   }
 
   ngOnInit(): void {
     this.productService.getProducts().subscribe(products => this.products = products);
 
-    if(this.productId) {
+    if (this.productId) {
       this.productService.getProductById(this.productId).subscribe(res => {
         this.product = res;
         console.log(res);
@@ -44,12 +47,23 @@ export class AdminComponent implements OnInit {
     }
   }
 
+  onDeleteProduct() {
+    this.displayDeleteProduct = true;
+  }
+
   deleteProduct(product: IProduct) {
     this.productService.deleteProduct(product);
   }
 
   addProduct(product: IProduct) {
-    this.productService.addProduct(product);
+    this.productService.addProduct(product).then(() => {
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Product added!',
+        detail: 'Product has been added successfully',
+        life: 5000
+      })
+    });
   }
 
   updateProduct(product: IProduct) {
@@ -74,10 +88,23 @@ export class AdminComponent implements OnInit {
     this.product.details = details;
     this.product.price = price;
     this.product.id = this.productId;
-    if(this.product) {
+    if (this.product) {
       this.productService.updateProduct(this.product).then(() => {
         this.displayEdit = false;
       })
     }
+  }
+
+  onAdd(name: string, details: string, price: string) {
+    let addProduct: IProduct = {
+      details: "",
+      price: "",
+      productName: ""
+    }
+    addProduct.productName = name;
+    addProduct.details = details;
+    addProduct.price = price;
+    this.addProduct(addProduct);
+    this.display = false;
   }
 }

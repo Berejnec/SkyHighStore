@@ -15,8 +15,20 @@ export class AdminUsersComponent implements OnInit {
 
   display: boolean = false;
 
+  displayEdit: boolean = false;
+
+  roles: { name: string, code: string }[];
+
+  selectedRole: string = 'Customer';
+
+  editUser: IUser = {displayName: "", email: "", uid: ""}
+
   constructor(private userService: UserService,
               public authService: AuthService) {
+    this.roles = [
+      {name: 'Admin', code: 'AD'},
+      {name: 'Customer', code: 'CM'}
+    ];
   }
 
   ngOnInit(): void {
@@ -31,4 +43,14 @@ export class AdminUsersComponent implements OnInit {
     this.display = true;
   }
 
+  onUpdateRole(role: {name: string, code: string}) {
+    this.userService.updateUserRole(this.editUser, role.name);
+    console.log(role.name);
+  }
+
+  displayEditDialog(user: IUser) {
+    this.displayEdit = true;
+    this.editUser = user;
+    console.log(this.editUser);
+  }
 }

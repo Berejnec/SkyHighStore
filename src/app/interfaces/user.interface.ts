@@ -2,5 +2,6 @@ export interface IUser {
   uid: string,
   email: string,
   displayName: string,
-  joinDate: Date
+  joinDate?: Date,
+  role?: string
 }

@@ -7,7 +7,8 @@
           <tr>
             <th>ID</th>
             <th>Email</th>
-            <th>Join Date</th>
+            <th>Role</th>
+            <th>Last signed in</th>
             <th>Actions</th>
           </tr>
         </ng-template>
@@ -15,13 +16,15 @@
           <tr>
             <td>{{user.uid}}</td>
             <td>{{user.email }}</td>
+            <td>{{user.role}}</td>
             <td *ngIf="user.joinDate; else blankJoinDate">{{user.joinDate.toDate() | date: 'dd-MM-yyyy HH:mm:ss'}}</td>
             <ng-template #blankJoinDate>
               <td>{{user.joinDate}}</td>
             </ng-template>
             <td>
+              <button pButton icon="pi pi-pencil" class="p-button-outlined mr-2 p-2"
+                      (click)="displayEditDialog(user)"></button>
               <button pButton icon="pi pi-trash" class="p-button-outlined mr-2 p-2" (click)="deleteUser(user)"></button>
-              <button pButton icon="pi pi-pencil" class="p-button-outlined mr-2 p-2"></button>
             </td>
           </tr>
         </ng-template>
@@ -35,3 +38,25 @@
 <ng-template #notLoggedIn>
   <h1>Log in before you can manage users</h1>
 </ng-template>
+
+<p-dialog header="Edit user role"
+          [(visible)]="displayEdit"
+          [closeOnEscape]="true"
+          [modal]="true"
+          [resizable]="false"
+          [draggable]="false"
+          [baseZIndex]="200000">
+
+  <div class="container">
+    <h3>Admin/Customer</h3>
+    <form #userRoleForm="ngForm" (ngSubmit)="onUpdateRole(role.value)">
+      <div class="d-flex flex-column">
+        <label>User role</label>
+        <p-dropdown [options]="roles" #role [(ngModel)]="selectedRole" optionLabel="name" name="name"></p-dropdown>
+        <button pButton class="p-button-raised mt-3" label="Change user role"></button>
+      </div>
+    </form>
+  </div>
+
+</p-dialog>
+
