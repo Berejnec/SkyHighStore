@@ -4,16 +4,17 @@
 <!--  <span>{{cartProduct.id}}</span>-->
 <!--</div>-->
 
-<p-orderList [value]="cart">
-  <ng-template let-product pTemplate="item">
-    <div>
-      {{product.productName}} - {{product.price}}
-    </div>
-  </ng-template>
+<!--<p-orderList [value]="cart">-->
+<!--  <ng-template let-product pTemplate="item">-->
+<!--    <div>-->
+<!--      {{product.productName}} - {{product.price}}-->
+<!--    </div>-->
+<!--  </ng-template>-->
 
 
-</p-orderList>
-<button pButton label="Place order" class="p-button-outlined" (click)="placeOrder()"></button>
+<!--</p-orderList>-->
+
+<h1>My shopping cart </h1>
 
 <p-dialog
   header="Place order"
@@ -32,3 +33,33 @@
   </div>
 
 </p-dialog>
+
+
+<p-dataView [value]="cart">
+  <ng-template let-product pTemplate="listItem">
+
+    <div class="d-flex full-width justify-content-between">
+      <div class="p-3" style="font-weight: bolder">
+        <i class="pi pi-tag product-category-icon"></i>
+        {{product.productName}}
+      </div>
+
+      <div class="product-grid-item-bottom mr-3">
+        <button pTooltip="Remove from cart"
+                tooltipPosition="right"
+                pButton icon="pi pi-times"
+                class="p-button-outlined"
+                (click)="removeFromCart(product)"
+        >
+
+        </button>
+      </div>
+    </div>
+
+  </ng-template>
+</p-dataView>
+
+<div class="justify-content-end" style="right: 0">
+  <button pButton label="Place order" class="p-button-outlined" (click)="placeOrder()"></button>
+</div>
+

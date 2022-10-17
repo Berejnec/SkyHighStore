@@ -12,6 +12,8 @@ export class AuthService {
 
   userData: any;
 
+  userRole: string = '';
+
   public userUid: string | undefined | null = null;
 
   constructor(
@@ -83,7 +85,10 @@ export class AuthService {
   }
 
   getUserUid() {
-    this.afAuth.authState.subscribe(data => this.userUid = data?.uid);
+    this.afAuth.authState.subscribe(data => {
+      this.userUid = data?.uid;
+    })
+
   }
 
   onSuccessSignIn() {

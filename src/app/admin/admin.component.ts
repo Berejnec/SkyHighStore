@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ProductService} from "../services/product.service";
 import {IProduct} from "../interfaces/product.interface";
 import {AuthService} from "../services/auth.service";
 import {MessageService} from "primeng/api";
+import {FormGroup, NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-admin',
@@ -28,6 +29,12 @@ export class AdminComponent implements OnInit {
   product: IProduct = {
     price: "", productName: ""
   };
+
+  @ViewChild('productForm') productForm!: NgForm;
+  @ViewChild('name') name!: ElementRef;
+  @ViewChild('details') details!: ElementRef;
+  @ViewChild('price') price!: ElementRef;
+
   displayDeleteProduct: boolean = false;
 
   constructor(private productService: ProductService,
@@ -83,16 +90,22 @@ export class AdminComponent implements OnInit {
     console.log(this.productId);
   }
 
-  onUpdate(name: string, details: string, price: string) {
-    this.product.productName = name;
-    this.product.details = details;
-    this.product.price = price;
-    this.product.id = this.productId;
-    if (this.product) {
-      this.productService.updateProduct(this.product).then(() => {
-        this.displayEdit = false;
-      })
+  onUpdate() {
+    let updateProduct: IProduct = {
+      details: "", id: "", price: "", productName: ""
     }
+    updateProduct.id = this.productId;
+    updateProduct.productName = this.name.nativeElement.value;
+    updateProduct.details = this.details.nativeElement.value;
+    updateProduct.price = this.price.nativeElement.value;
+    // this.product.productName = name;
+    // this.product.details = details;
+    // this.product.price = price;
+    // this.product.id = this.productId;
+      this.productService.updateProduct(updateProduct).then(() => {
+        this.displayEdit = false;
+        console.log(updateProduct);
+      })
   }
 
   onAdd(name: string, details: string, price: string) {

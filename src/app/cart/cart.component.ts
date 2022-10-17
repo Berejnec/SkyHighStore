@@ -28,16 +28,18 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
     // this.cartProducts$ = this.cartService.getCartProducts();
-    this.cartService.getCart().subscribe(cart => {
-      this.cart = cart.map((shopCart) => {
-        const data = shopCart.payload.doc.data() as IProduct;
-        return {
-          id: shopCart.payload.doc.id,
-          productName: data.productName,
-          price: data.price,
-        }
-      })
-    })
+    // this.cartService.getCart().subscribe(cart => {
+    //   this.cart = cart.map((shopCart) => {
+    //     const data = shopCart.payload.doc.data() as IProduct;
+    //     return {
+    //       id: shopCart.payload.doc.id,
+    //       productName: data.productName,
+    //       price: data.price,
+    //     }
+    //   })
+    // })
+    this.auth.getUserUid();
+    this.cartService.getCart().subscribe(cart => this.cart = cart);
     console.log(this.auth.userUid);
     // this.auth.getUserUid();
     // let uid = this.auth.userUid;
@@ -64,5 +66,10 @@ export class CartComponent implements OnInit {
     setTimeout(() => {
       this.router.navigate(['products']);
     }, 1500);
+  }
+
+  removeFromCart(product: IProduct) {
+    this.cartService.deleteProduct(product);
+    console.log(product);
   }
 }

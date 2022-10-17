@@ -36,7 +36,7 @@
             <button pButton icon="pi pi-pencil" class="p-button-outlined mr-2 p-2"
                     (click)="openEditProductDialog(product.id, product.productName, product.details, product.price)"></button>
             <button pButton icon="pi pi-trash" class="p-button-outlined mr-2 p-2"
-                    (click)="onDeleteProduct()"></button>
+                    (click)="deleteProduct(product)"></button>
           </td>
         </tr>
 
@@ -98,7 +98,7 @@
           [baseZIndex]="200000">
 
   <div class="container">
-    <form #productForm="ngForm" (ngSubmit)="onUpdate(name.value, details.value, price.value)">
+    <form #productForm="ngForm" (ngSubmit)="onUpdate()">
       <div class="d-flex flex-column">
         <label>Product Name</label>
         <input class="form-control" name="productName"

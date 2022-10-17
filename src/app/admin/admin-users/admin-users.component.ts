@@ -32,7 +32,8 @@ export class AdminUsersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userService.getUsers().subscribe(users => this.users = users);
+    this.userService.getUsers().subscribe(users => {this.users = users; console.log(this.users);});
+
   }
 
   deleteUser(user: IUser) {

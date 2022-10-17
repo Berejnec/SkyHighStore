@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {IProduct} from "../interfaces/product.interface";
-import {addDoc, collection, collectionData, Firestore} from "@angular/fire/firestore";
+import {addDoc, collection, collectionData, deleteDoc, doc, Firestore} from "@angular/fire/firestore";
 import {Observable} from "rxjs";
 import {AuthService} from "./auth.service";
 import {user} from "@angular/fire/auth";
@@ -20,13 +20,21 @@ export class CartService {
   }
 
   getCart() {
-    return this.angularFirestore.collection(`users/${this.authService.userUid}/cart`).snapshotChanges();
+    // return this.angularFirestore.collection(`users/${this.authService.userUid}/cart`).snapshotChanges();
+    const cartRef = collection(this.fireStore, `users/${this.authService.userUid}/cart`);
+    return collectionData(cartRef, {idField: 'id'}) as Observable<any>;
   }
 
   buyProduct(product: IProduct) {
     const userUid = this.authService.userUid;
     const cartsRef = collection(this.fireStore, `users/${userUid}/cart`);
     return addDoc(cartsRef, product);
+  }
+
+  deleteProduct(product: IProduct) {
+    const userUid = this.authService.userUid;
+    const productDocRef = doc(this.fireStore, `users/${userUid}/cart/${product.id}`);
+    return deleteDoc(productDocRef);
   }
 
   getCartProducts(): Observable<IProduct[]> {

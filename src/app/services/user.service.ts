@@ -5,7 +5,7 @@ import {
   collection,
   collectionData,
   deleteDoc,
-  doc,
+  doc, docData,
   Firestore,
   setDoc,
   updateDoc
@@ -46,5 +46,10 @@ export class UserService {
   updateUserRole(user: IUser, role: string) {
     const userDocRef = doc(this.fireStore, `users/${user.uid}`);
     return updateDoc(userDocRef, { role: role});
+  }
+
+  getUserById(id: string) {
+    const userRef = doc(this.fireStore, `users/${id}`);
+    return docData(userRef, { idField: 'uid'}) as Observable<IUser>;
   }
 }
