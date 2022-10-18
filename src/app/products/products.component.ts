@@ -36,6 +36,7 @@ export class ProductsComponent implements OnInit {
   }
 
   addToCart(product: IProduct) {
+    console.log(product);
     this.cartService.addToCart(product).then(() => {
       this.messageService.add({
         severity: 'success',

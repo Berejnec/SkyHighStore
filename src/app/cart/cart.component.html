@@ -55,7 +55,7 @@
           <span style="font-weight: bolder">{{product.productName}}</span>
           <span>{{product.price | currency: 'USD'}}</span>
 
-        <img src="assets/head2.png" alt="product" width="50" height="50">
+        <img [src]="product.imageUrl" alt="product" width="50" height="50">
       </div>
 
       <div class="product-grid-item-bottom mr-3">
@@ -76,12 +76,12 @@
   </ng-template>
 
 </p-dataView>
-<div class="full-width" style="background: white; height: 70px; color: black; margin-top: -13px">
+<div class="full-width d-flex justify-content-end align-items-center pr-3 pt-2" style="background: white; height: 70px; color: black; margin-top: -13px">
   <h2>Total price: {{getTotalCartPrice() | currency: 'USD'}}</h2>
 </div>
 
 
-<div class="justify-content-between mt-5" style="float: right; text-align: right">
+<div class="justify-content-between mt-5 mb-5" style="float: right; text-align: right">
   <button pButton id="order" label="Place order" class="p-button-raised" (click)="placeOrder()"></button>
 </div>
 

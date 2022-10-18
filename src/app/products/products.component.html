@@ -16,11 +16,11 @@
     <ng-template let-product pTemplate="listItem">
       <div class="col-12">
         <div class="product-list-item">
-          <img src="assets/head2.png" alt="product">
+          <img [src]="product.imageUrl" alt="productImage">
           <div class="product-list-detail">
             <div class="product-name">{{product.productName}}</div>
             <div class="product-description">{{product.details}}</div>
-            <span class="product-price">${{product.price}}</span>
+            <span class="product-price">{{product.price | currency: 'USD'}}</span>
           </div>
           <div class="product-list-action">
             <button pButton label="Add to Cart" class="p-button-raised text-center full-width"
@@ -34,9 +34,11 @@
       <div class="col-12 col-lg-4 col-sm-6 mt-4 d-inline-flex flex-column">
         <div class="product-grid-item card-2 full-width full-height">
           <div class="product-grid-item-top">
-            <img src="assets/head2.png" alt="product">
+            <img [src]="product.imageUrl" alt="product">
             <div>
-              <span style="font-weight: bolder"><i class="pi pi-tag product-category-icon"></i>Electronics</span>
+              <span style="font-weight: bolder"><i class="pi pi-tag product-category-icon"></i>
+                {{product.type | titlecase}}
+              </span>
             </div>
           </div>
           <div class="product-grid-item-content">

@@ -108,15 +108,35 @@ export class AdminComponent implements OnInit {
       })
   }
 
-  onAdd(name: string, details: string, price: string) {
+  onAdd(name: string, details: string, price: string, type: string) {
     let addProduct: IProduct = {
       details: "",
       price: "",
-      productName: ""
+      productName: "",
+      type: ""
     }
     addProduct.productName = name;
     addProduct.details = details;
     addProduct.price = price;
+    addProduct.type = type;
+    switch (addProduct.type) {
+      case 'phone':
+        addProduct.imageUrl = 'https://s13emagst.akamaized.net/products/25344/25343941/images/res_99d57ec9e3d9bb8d3242f384288ce0a3.jpg?width=450&height=450&hash=786B6F02C39C1B12EDCE7B0392025549';
+        break;
+      case 'laptop':
+        addProduct.imageUrl = 'https://s13emagst.akamaized.net/products/45425/45424172/images/res_f495aff6c338b7c8ef9404851caa4599.jpg?width=450&height=450&hash=A3E5F5E0D73D24956E3D10910907C715';
+        break;
+      case 'mouse':
+        addProduct.imageUrl = 'https://s13emagst.akamaized.net/products/18953/18952046/images/res_de3672cff6e18379c144e895e1d785f2.jpg?width=450&height=450&hash=24ACABAA54BE2AEB84711A8D17EA7055';
+        break;
+      case 'headphones':
+        addProduct.imageUrl = 'https://s13emagst.akamaized.net/products/8096/8095450/images/res_0dc808a8af26ded30ec4a60b5b367c71.jpg?width=450&height=450&hash=3269C6F328F6395C42B5C1EC41E637CF';
+        break;
+      case 'pc':
+        addProduct.imageUrl = 'https://s13emagst.akamaized.net/products/43120/43119688/images/res_053354505967a6e29744d21ec798c850.jpg?width=450&height=450&hash=4F1B788DDEDB06F8E35F0A1F637C1F56';
+        break;
+    }
+
     this.addProduct(addProduct);
     this.display = false;
   }

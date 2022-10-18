@@ -58,7 +58,7 @@
           [baseZIndex]="200000">
 
   <div class="container">
-    <form #addProductForm="ngForm" (ngSubmit)="onAdd(name.value, details.value, price.value)">
+    <form #addProductForm="ngForm" (ngSubmit)="onAdd(name.value, details.value, price.value, type.value)">
       <div class="d-flex flex-column">
         <label>Product Name</label>
         <input class="form-control" name="productName"
@@ -79,6 +79,11 @@
             <input class="form-control full-width" pInputText name="price" #price placeholder="Price" required>
           </div>
         </div>
+      </div>
+
+      <div class="d-flex flex-column mt-2">
+        <label>Type</label>
+        <input class="form-control" pInputText #type name="type" placeholder="Type" required>
       </div>
 
       <div class="mt-3">

@@ -17,7 +17,7 @@ export class NavbarComponent implements OnInit {
 
   role: string = '';
 
-  constructor(private authService: AuthService,
+  constructor(public authService: AuthService,
               private userService: UserService) {
   }
 

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {CartService} from "../services/cart.service";
 import {Observable} from "rxjs";
 import {IProduct} from "../interfaces/product.interface";
@@ -11,7 +11,7 @@ import {Router} from "@angular/router";
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss']
 })
-export class CartComponent implements OnInit {
+export class CartComponent implements OnInit, OnChanges {
 
   cartProducts$: Observable<IProduct[]> | null = null;
 
@@ -51,10 +51,10 @@ export class CartComponent implements OnInit {
       this.cart = cart;
       this.getTotalCartPrice();
     });
-    console.log(this.auth.userUid);
-    // this.auth.getUserUid();
-    // let uid = this.auth.userUid;
-    // console.log(uid);
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    console.log(changes);
   }
 
   placeOrder() {

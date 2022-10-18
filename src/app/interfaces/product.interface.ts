@@ -3,5 +3,7 @@ export interface IProduct {
   productName: string,
   price: string,
   addedAt?: Date,
-  details?: string
+  details?: string,
+  imageUrl?: string,
+  type?: string
 }
