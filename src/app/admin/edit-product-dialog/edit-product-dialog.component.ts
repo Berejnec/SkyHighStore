@@ -21,7 +21,6 @@ export class EditProductDialogComponent implements OnInit {
     if(this.productId) {
       this.productService.getProductById(this.productId).subscribe(res => {
         this.product = res;
-        console.log(this.product);
       })
     }
   }
@@ -35,6 +34,6 @@ export class EditProductDialogComponent implements OnInit {
   }
 
   setPrice(product: IProduct, price: string) {
-    this.productService.modifyProductPrice(product, Number(price));
+    // this.productService.modifyProductPrice(product, Number(price));
   }
 }

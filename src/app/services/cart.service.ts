@@ -37,6 +37,12 @@ export class CartService {
     return deleteDoc(productDocRef);
   }
 
+  deleteAllProductsFromCart() {
+    const userUid = this.authService.userUid;
+    const cartRef = doc(this.fireStore, `users/${userUid}/cart`);
+    return deleteDoc(cartRef);
+  }
+
   getCartProducts(): Observable<IProduct[]> {
     const userUid = this.authService.userUid;
     const cartsRef = collection(this.fireStore, `users/${userUid}/cart`);

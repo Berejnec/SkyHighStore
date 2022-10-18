@@ -17,6 +17,12 @@
 
 </div>
 
-<div class="container d-flex flex-column justify-content-center align-items-center mt-4">
+<div class="container d-flex flex-column justify-content-center align-items-center mt-4 mb-4">
   <button pButton label="Sign up" (click)="signUp(email.value, password.value)"></button>
+</div>
+
+<div class="container d-flex flex-column justify-content-center align-items-center mt-5" style="font-size: 1.6rem">
+  Already got an account?
+  <span class="mb-3" style="font-size: 1.2rem">Go to Log in</span>
+  <button pButton class="p-button-raised" label="Log in" (click)="goToLogin()"></button>
 </div>

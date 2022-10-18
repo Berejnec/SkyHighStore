@@ -9,7 +9,6 @@ import {
   doc,
   docData,
   Firestore,
-  setDoc,
   updateDoc
 } from '@angular/fire/firestore'
 
@@ -45,12 +44,11 @@ export class ProductService {
 
   updateProduct(product: IProduct) {
     const productDocRef = doc(this.fireStore, `products/${product.id}`);
-    console.log(product.id);
-    return updateDoc(productDocRef, {productName: product.productName, price: product.price, details: product.details});
+    return updateDoc(productDocRef, {...product, price: product.price});
   }
 
-  modifyProductPrice(product: IProduct, amount: number) {
-    const productDocRef = doc(this.fireStore, `products/${product.id}`);
-    return updateDoc(productDocRef, { price: amount});
+  modifyProductPrice(id: string, amount: string) {
+    // const productDocRef = doc(this.fireStore, `products/${product.id}`);
+    // return updateDoc(productDocRef, { price: amount});
   }
 }

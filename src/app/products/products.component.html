@@ -36,9 +36,17 @@
           <div class="product-grid-item-top">
             <img [src]="product.imageUrl" alt="product">
             <div>
-              <span style="font-weight: bolder"><i class="pi pi-tag product-category-icon"></i>
-                {{product.type | titlecase}}
+
+              <span *ngIf="product.type==='PC'; else notPC" style="font-weight: bolder"><i class="pi pi-tag product-category-icon"></i>
+                {{product.type}}
               </span>
+
+              <ng-template #notPC>
+                <span style="font-weight: bolder"><i class="pi pi-tag product-category-icon"></i>
+                  {{product.type | titlecase}}
+                </span>
+              </ng-template>
+
             </div>
           </div>
           <div class="product-grid-item-content">
@@ -47,7 +55,8 @@
           </div>
           <div class="product-grid-item-bottom">
             <span class="product-price">{{product.price | currency: 'USD'}}</span>
-            <button pButton pTooltip="Add to Cart" tooltipPosition="top" icon="pi pi-shopping-cart" class="p-button-raised cart-button products-cart"
+            <button pButton pTooltip="Add to Cart" tooltipPosition="top" icon="pi pi-shopping-cart"
+                    class="p-button-raised cart-button products-cart"
                     (click)="addToCart(product)"></button>
           </div>
         </div>

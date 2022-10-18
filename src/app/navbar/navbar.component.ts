@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../services/auth.service";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import {get} from "@angular/fire/database";
 import {UserService} from "../services/user.service";
 
 @Component({
@@ -17,6 +16,10 @@ export class NavbarComponent implements OnInit {
 
   role: string = '';
 
+  email: string = '';
+
+  tooltipMessage: string = '';
+
   constructor(public authService: AuthService,
               private userService: UserService) {
   }
@@ -27,13 +30,16 @@ export class NavbarComponent implements OnInit {
 
     onAuthStateChanged(this.auth, (user) => {
       if(user) {
-        console.log(user.uid);
         this.uid = user.uid;
         this.userService.getUserById(user.uid).subscribe(res => {
           if(res.role) {
             this.role = res.role;
+            this.tooltipMessage = this.role + ': ';
             this.items[2].visible = this.role === 'Admin';
-            console.log(this.role);
+          }
+          if(res.email) {
+            this.email = res.email;
+            this.tooltipMessage = this.tooltipMessage + ' ' + this.email;
           }
         })
       }

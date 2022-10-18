@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {IUser} from "../../interfaces/user.interface";
 import {UserService} from "../../services/user.service";
 import {AuthService} from "../../services/auth.service";
-import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-admin-users',
@@ -32,7 +31,7 @@ export class AdminUsersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userService.getUsers().subscribe(users => {this.users = users; console.log(this.users);});
+    this.userService.getUsers().subscribe(users => {this.users = users;});
 
   }
 
@@ -46,12 +45,11 @@ export class AdminUsersComponent implements OnInit {
 
   onUpdateRole(role: {name: string, code: string}) {
     this.userService.updateUserRole(this.editUser, role.name);
-    console.log(role.name);
+    this.displayEdit = false;
   }
 
   displayEditDialog(user: IUser) {
     this.displayEdit = true;
     this.editUser = user;
-    console.log(this.editUser);
   }
 }

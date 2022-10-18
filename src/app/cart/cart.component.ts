@@ -54,13 +54,26 @@ export class CartComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log(changes);
   }
 
   placeOrder() {
-    this.displayPlaceOrder = true;
+    if(this.cart.length < 1) {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Cart is empty!',
+        detail: 'Add products before you can place the order.',
+        life: 5000
+      })
+    } else {
+      this.displayPlaceOrder = true;
+    }
   }
 
+  deleteCart() {
+    this.cart.forEach(product => {
+      this.removeFromCart(product);
+    })
+  }
 
   closeOrderDialog() {
     this.displayPlaceOrder = false;
@@ -77,10 +90,10 @@ export class CartComponent implements OnInit, OnChanges {
     setTimeout(() => {
       this.router.navigate(['products']);
     }, 1500);
+    this.deleteCart();
   }
 
   removeFromCart(product: IProduct) {
     this.cartService.deleteProduct(product);
-    console.log(product);
   }
 }

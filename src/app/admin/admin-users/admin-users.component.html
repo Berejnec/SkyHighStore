@@ -9,7 +9,11 @@
     </div>
 
     <div class="card">
-      <p-table #dt [globalFilterFields]="['email']" [value]="users" responsiveLayout="scroll">
+      <p-table #dt [globalFilterFields]="['email']"
+               [value]="users" responsiveLayout="scroll"
+               [rows]="7"
+               [paginator]="true"
+      >
         <ng-template pTemplate="header">
           <tr>
             <th>ID</th>

@@ -4,14 +4,27 @@
            class="navbar-pi-bars"
            *ngIf="authService.isLoggedIn"
 >
-  <div>
-    <button pButton class="p-button-text black-color navbar-button" label="Sky High Store"
-            style="color: white"
-            [routerLink]="['products']">
-      <i class="pi pi-cloud mr-2"></i>
-    </button>
 
-    <button (click)="signOut()" pButton class="p-button-text black-color navbar-button"
+
+  <div>
+    <p-avatar
+      icon="pi pi-user"
+      styleClass="p-mr-2"
+      size="large"
+      [style]="{'background-color':'rgb(95,95,187)', 'color': '#ffffff'}"
+      shape="circle"
+      [pTooltip]="tooltipMessage"
+      tooltipPosition="bottom"
+      tooltipZIndex="19999"
+    ></p-avatar>
+<!--    <button pButton class="p-button-text black-color navbar-button ml-3 mr-2" label="Sky High Store"-->
+<!--            style="color: white"-->
+<!--            [routerLink]="['products']">-->
+<!--      <i class="pi pi-cloud mr-2"></i>-->
+<!--    </button>-->
+
+
+    <button (click)="signOut()" pButton class="p-button-text black-color navbar-button ml-3"
             style="color: white"
             label="Sign Out"><i class="pi pi-sign-out mr-2"></i></button>
   </div>

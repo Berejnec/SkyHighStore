@@ -32,11 +32,9 @@ export class ProductsComponent implements OnInit {
 
   buyProduct(product: IProduct) {
     this.cartService.buyProduct(product);
-    console.log('bought', product);
   }
 
   addToCart(product: IProduct) {
-    console.log(product);
     this.cartService.addToCart(product).then(() => {
       this.messageService.add({
         severity: 'success',

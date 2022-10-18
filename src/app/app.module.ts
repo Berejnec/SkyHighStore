@@ -42,6 +42,7 @@ import {DataViewModule} from "primeng/dataview";
 import { EditProductDialogComponent } from './admin/edit-product-dialog/edit-product-dialog.component';
 import {OrderListModule} from "primeng/orderlist";
 import {DropdownModule} from "primeng/dropdown";
+import {AvatarModule} from "primeng/avatar";
 
 @NgModule({
   declarations: [
@@ -56,31 +57,32 @@ import {DropdownModule} from "primeng/dropdown";
     NotFoundComponent,
     EditProductDialogComponent
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    provideFirestore(() => getFirestore()),
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
-    AngularFirestoreModule,
-    ButtonModule,
-    InputTextModule,
-    MenubarModule,
-    ToolbarModule,
-    CardModule,
-    FileUploadModule,
-    SkeletonModule,
-    TableModule,
-    DialogModule,
-    BrowserAnimationsModule,
-    ToastModule,
-    FormsModule,
-    DataViewModule,
-    OrderListModule,
-    DropdownModule,
-    ReactiveFormsModule
-  ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        AppRoutingModule,
+        AngularFireModule.initializeApp(environment.firebase),
+        provideFirestore(() => getFirestore()),
+        provideFirebaseApp(() => initializeApp(environment.firebase)),
+        AngularFirestoreModule,
+        ButtonModule,
+        InputTextModule,
+        MenubarModule,
+        ToolbarModule,
+        CardModule,
+        FileUploadModule,
+        SkeletonModule,
+        TableModule,
+        DialogModule,
+        BrowserAnimationsModule,
+        ToastModule,
+        FormsModule,
+        DataViewModule,
+        OrderListModule,
+        DropdownModule,
+        ReactiveFormsModule,
+        AvatarModule
+    ],
   providers: [AuthService, MessageService],
   bootstrap: [AppComponent]
 })

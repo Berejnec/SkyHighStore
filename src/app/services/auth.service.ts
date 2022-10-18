@@ -38,7 +38,6 @@ export class AuthService {
   signUp(email: string, password: string) {
     return this.afAuth.createUserWithEmailAndPassword(email, password).then((result) => {
       this.setUserData(result.user);
-      console.log('signed up successfully');
     })
   }
 
@@ -54,7 +53,6 @@ export class AuthService {
     })
       .catch((error) => {
         this.onFailedSignIn();
-        console.log(error);
       })
   }
 
