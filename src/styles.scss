@@ -68,7 +68,7 @@ body {
   }
 }
 
-.p-menubar .p-menubar-root-list > .p-menuitem >  {
+.p-menubar .p-menubar-root-list > .p-menuitem > {
 
   .p-menuitem-icon {
     color: red !important;
@@ -83,6 +83,7 @@ body {
   }
 
 }
+
 .p-menubar .p-menubar-root-list > .p-menuitem .p-menuitem-link {
 
   :hover {
@@ -120,7 +121,7 @@ body {
 
 .p-dialog {
   width: 500px !important;
-  height: 450px !important;
+  height: 480px !important;
 }
 
 h1 {
@@ -157,6 +158,7 @@ h1 {
     color: black !important;
   }
 }
+
 .pi-shopping-cart {
   color: white !important;
 
@@ -193,3 +195,11 @@ h1 {
   height: 250px !important;
 }
 
+.p-tooltip-text {
+  text-align: center !important;
+}
+
+.pi-cloud {
+  color: white !important;
+  //font-size: 2rem !important;
+}

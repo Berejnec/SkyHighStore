@@ -46,8 +46,8 @@ export class NavbarComponent implements OnInit {
 
       this.items = [
         {
-          label: 'Products',
-          icon: 'pi pi-shopping-bag',
+          label: 'Sky High Store',
+          icon: 'pi pi-cloud',
           routerLink: ['/products'],
         },
         {
