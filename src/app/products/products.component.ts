@@ -5,6 +5,7 @@ import {IProduct} from "../interfaces/product.interface";
 import {ProductService} from "../services/product.service";
 import {AuthService} from "../services/auth.service";
 import {CartService} from "../services/cart.service";
+import {MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-products',
@@ -20,6 +21,7 @@ export class ProductsComponent implements OnInit {
   constructor(private dataBase: AngularFirestore,
               public authService: AuthService,
               private productService: ProductService,
+              private messageService: MessageService,
               private cartService: CartService) {
     this.authService.getUserUid();
   }
@@ -34,7 +36,13 @@ export class ProductsComponent implements OnInit {
   }
 
   addToCart(product: IProduct) {
-    this.cartService.addToCart(product);
-    console.log(this.authService.userUid, product);
+    this.cartService.addToCart(product).then(() => {
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Product added!',
+        detail: 'Your desired product was added to your shopping cart.',
+        life: 4000
+      })
+    })
   }
 }

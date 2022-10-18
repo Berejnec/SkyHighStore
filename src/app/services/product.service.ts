@@ -45,7 +45,8 @@ export class ProductService {
 
   updateProduct(product: IProduct) {
     const productDocRef = doc(this.fireStore, `products/${product.id}`);
-    return setDoc(productDocRef, product);
+    console.log(product.id);
+    return updateDoc(productDocRef, {productName: product.productName, price: product.price, details: product.details});
   }
 
   modifyProductPrice(product: IProduct, amount: number) {

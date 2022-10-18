@@ -12,13 +12,13 @@ body {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  //background: url('assets/bg5.png') no-repeat center center fixed;
-  background: rgba(64, 224, 208, 0.2);
+  background: url('assets/bg10.jpg') no-repeat center center fixed;
+  //background: rgba(64, 224, 208, 0.2);
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-
+  color: white;
 }
 
 .full-width {
@@ -60,7 +60,34 @@ body {
 }
 
 .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link .p-menuitem-text {
-  color: black !important;
+  color: white !important;
+  font-size: 1.2rem;
+
+  .p-menuitem-icon {
+    color: red !important;
+  }
+}
+
+.p-menubar .p-menubar-root-list > .p-menuitem >  {
+
+  .p-menuitem-icon {
+    color: red !important;
+  }
+
+  :hover {
+    background: #9b9bff !important;
+  }
+
+  :focus {
+    background: #9b9bff !important;
+  }
+
+}
+.p-menubar .p-menubar-root-list > .p-menuitem .p-menuitem-link {
+
+  :hover {
+    color: black !important;
+  }
 }
 
 
@@ -97,6 +124,72 @@ body {
 }
 
 h1 {
-  font-size: 3rem;
+  font-size: 3.5rem;
   font-weight: bolder;
 }
+
+@media screen and (max-width: 960px) {
+  .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link .p-menuitem-text {
+    color: black !important;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .p-menubar .p-menubar-button:hover {
+    color: #6c757d;
+    background: #4c7eb1;
+  }
+}
+
+.navbar-pi-bars {
+  .pi-bars {
+    color: white !important;
+
+    :hover {
+      color: black !important;
+    }
+  }
+}
+
+
+.products-cart {
+  .pi-shopping-cart {
+    color: black !important;
+  }
+}
+.pi-shopping-cart {
+  color: white !important;
+
+  @media screen and (max-width: 960px) {
+    color: black !important;
+  }
+}
+
+.pi-shopping-bag {
+  color: white !important;
+
+  @media screen and (max-width: 960px) {
+    color: black !important;
+  }
+}
+
+.pi-user {
+  color: white !important;
+
+  @media screen and (max-width: 960px) {
+    color: black !important;
+  }
+}
+
+.pi-angle-down {
+  color: white !important;
+
+  @media screen and (max-width: 960px) {
+    color: black !important;
+  }
+}
+
+.confirm-order-dialog {
+  height: 250px !important;
+}
+

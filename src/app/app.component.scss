@@ -4,3 +4,20 @@
   margin-top: 35px;
   margin-bottom: 25px;
 }
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: transparent;
+  font-style: italic;
+  font-weight: 100 !important;
+  color: white;
+  text-align: right;
+  padding-right: 20px;
+
+  @media screen and (max-width: 960px) {
+    display: none;
+  }
+}

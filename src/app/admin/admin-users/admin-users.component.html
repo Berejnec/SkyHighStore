@@ -1,8 +1,15 @@
-<div class="pt-5">
-  <div *ngIf="authService.isLoggedIn; else notLoggedIn">
+<div class="">
+  <div *ngIf="authService.isLoggedIn; else notLoggedIn" class="pt-5">
+
+    <div class="d-flex mb-2">
+        <span class="p-input-icon-left">
+            <i class="pi pi-search"></i>
+            <input pInputText type="text" #filterText (input)="dt.filterGlobal(filterText.value, 'contains')" placeholder="Search user by email" />
+        </span>
+    </div>
 
     <div class="card">
-      <p-table [value]="users" responsiveLayout="scroll">
+      <p-table #dt [globalFilterFields]="['email']" [value]="users" responsiveLayout="scroll">
         <ng-template pTemplate="header">
           <tr>
             <th>ID</th>

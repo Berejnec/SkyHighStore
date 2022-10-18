@@ -26,6 +26,14 @@ export class CartComponent implements OnInit {
     this.auth.getUserUid();
   }
 
+  getTotalCartPrice() {
+    let totalPrice: number = 0;
+    this.cart.forEach(product => {
+      totalPrice = totalPrice + Number(product.price);
+    });
+    return totalPrice;
+  }
+
   ngOnInit(): void {
     // this.cartProducts$ = this.cartService.getCartProducts();
     // this.cartService.getCart().subscribe(cart => {
@@ -39,7 +47,10 @@ export class CartComponent implements OnInit {
     //   })
     // })
     this.auth.getUserUid();
-    this.cartService.getCart().subscribe(cart => this.cart = cart);
+    this.cartService.getCart().subscribe(cart => {
+      this.cart = cart;
+      this.getTotalCartPrice();
+    });
     console.log(this.auth.userUid);
     // this.auth.getUserUid();
     // let uid = this.auth.userUid;

@@ -17,6 +17,7 @@
 <h1>My shopping cart </h1>
 
 <p-dialog
+  class="confirm-order-dialog"
   header="Place order"
   [(visible)]="displayPlaceOrder"
   [closeOnEscape]="true"
@@ -25,12 +26,18 @@
   [draggable]="false"
   [baseZIndex]="200000"
 >
-  <h2>Are you sure about your order?</h2>
+<ng-template pTemplate="content">
+  <div class="d-flex justify-content-center flex-column align-items-center">
+    <h2>Are you sure about your order?</h2>
 
-  <div>
-    <button pButton label="Cancel" class="p-button-outlined" (click)="closeOrderDialog()"></button>
-    <button pButton label="Yes" class="p-button-raised" (click)="confirmOrder()"></button>
+    <div class="">
+      <button pButton label="Cancel" class="p-button-outlined mr-4" (click)="closeOrderDialog()"></button>
+      <button pButton label="Yes" class="p-button-raised" (click)="confirmOrder()"></button>
+    </div>
   </div>
+</ng-template>
+
+
 
 </p-dialog>
 
@@ -39,9 +46,16 @@
   <ng-template let-product pTemplate="listItem">
 
     <div class="d-flex full-width justify-content-between">
-      <div class="p-3" style="font-weight: bolder">
-        <i class="pi pi-tag product-category-icon"></i>
-        {{product.productName}}
+      <div class="p-3 d-flex flex-column" >
+        <div>
+          <i class="pi pi-tag product-category-icon"></i>
+
+        </div>
+
+          <span style="font-weight: bolder">{{product.productName}}</span>
+          <span>{{product.price | currency: 'USD'}}</span>
+
+        <img src="assets/head2.png" alt="product" width="50" height="50">
       </div>
 
       <div class="product-grid-item-bottom mr-3">
@@ -49,6 +63,7 @@
                 tooltipPosition="right"
                 pButton icon="pi pi-times"
                 class="p-button-outlined"
+                id="remove"
                 (click)="removeFromCart(product)"
         >
 
@@ -56,10 +71,17 @@
       </div>
     </div>
 
-  </ng-template>
-</p-dataView>
 
-<div class="justify-content-end" style="right: 0">
-  <button pButton label="Place order" class="p-button-outlined" (click)="placeOrder()"></button>
+
+  </ng-template>
+
+</p-dataView>
+<div class="full-width" style="background: white; height: 70px; color: black; margin-top: -13px">
+  <h2>Total price: {{getTotalCartPrice() | currency: 'USD'}}</h2>
+</div>
+
+
+<div class="justify-content-between mt-5" style="float: right; text-align: right">
+  <button pButton id="order" label="Place order" class="p-button-raised" (click)="placeOrder()"></button>
 </div>
 

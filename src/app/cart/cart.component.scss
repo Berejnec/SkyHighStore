@@ -7,3 +7,21 @@ i {
   justify-content: space-between;
   align-items: center;
 }
+#order {
+  background: #8989e0 !important;
+
+  :hover {
+    background: black !important;
+  }
+}
+
+#remove {
+  border-color: red !important;
+}
+
+.product-grid-item-top {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: space-between;
+}

@@ -6,9 +6,27 @@
   color: black;
 }
 
+i {
+  color: white !important;
+
+  &:hover {
+
+  }
+}
+
+.p-button-icon {
+  color: white !important;
+}
+
 .navbar-button {
+
+
   &:hover {
     background: #e9ecef !important;
     color: black !important;
+
+    i {
+      color: black !important;
+    }
   }
 }
