@@ -1,8 +1,8 @@
 <div class="container d-flex flex-column justify-content-center align-items-center">
-  <h1 style="text-align: center">Sign In to Sky High Store</h1>
+  <h1 style="text-align: center">Sign in to Sky High Store</h1>
   <div class="col-12 col-md-6">
     <div class="p-inputgroup">
-      <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+      <span class="p-inputgroup-addon"><i class="pi pi-at"></i></span>
       <input type="email" pInputText placeholder="Email" #email required>
     </div>
   </div>
@@ -15,14 +15,13 @@
   </div>
 
   <div class="col-12 col-md-4 mt-3 d-flex justify-content-center">
-    <button pButton label="Sign in" (click)="signIn(email.value, password.value)"></button>
+    <button icon="pi pi-sign-in" pButton label="Sign in" (click)="signIn(email.value, password.value)"></button>
   </div>
 </div>
 
-<div class="container d-flex flex-column justify-content-center align-items-center mt-4">
-  <h5>Don't have an account yet?</h5>
+<div class="d-flex flex-column align-items-center mt-5">
+  <h2>Don't have an account yet?</h2>
   <h3>Sign up below!</h3>
-
   <button pButton class="p-button-raised" label="Sign up" (click)="goToSignUp()"></button>
 </div>
 

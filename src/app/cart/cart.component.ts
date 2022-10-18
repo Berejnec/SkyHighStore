@@ -35,17 +35,6 @@ export class CartComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    // this.cartProducts$ = this.cartService.getCartProducts();
-    // this.cartService.getCart().subscribe(cart => {
-    //   this.cart = cart.map((shopCart) => {
-    //     const data = shopCart.payload.doc.data() as IProduct;
-    //     return {
-    //       id: shopCart.payload.doc.id,
-    //       productName: data.productName,
-    //       price: data.price,
-    //     }
-    //   })
-    // })
     this.auth.getUserUid();
     this.cartService.getCart().subscribe(cart => {
       this.cart = cart;

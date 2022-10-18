@@ -201,5 +201,8 @@ h1 {
 
 .pi-cloud {
   color: white !important;
-  //font-size: 2rem !important;
+
+  @media screen and (max-width: 960px) {
+    color: black !important;
+  }
 }

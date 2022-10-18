@@ -6,7 +6,7 @@
       <div class="d-flex flex-column">
       <span class="p-input-icon-left mb-2 md:mb-0">
                   <i class="pi pi-search"></i>
-                  <input #inputValue type="search" pInputText placeholder="Search by Name"
+                  <input #inputValue type="search" class="full-width" pInputText placeholder="Search by Name"
                          (input)="dv.filter(inputValue.value)">
               </span>
         <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
@@ -31,7 +31,7 @@
     </ng-template>
 
     <ng-template let-product pTemplate="gridItem">
-      <div class="col-12 col-lg-4 col-sm-6 mt-4 d-inline-flex flex-column">
+      <div class="col-12 col-lg-4 col-md-6 col-sm-12 mt-4 d-inline-flex flex-column">
         <div class="product-grid-item card-2 full-width full-height">
           <div class="product-grid-item-top">
             <img [src]="product.imageUrl" alt="product">

@@ -10,7 +10,7 @@
 
     <div class="card">
       <p-table #dt [globalFilterFields]="['email']"
-               [value]="users" responsiveLayout="scroll"
+               [value]="users" responsiveLayout="stack"
                [rows]="7"
                [paginator]="true"
       >
@@ -25,12 +25,16 @@
         </ng-template>
         <ng-template pTemplate="body" let-user>
           <tr>
-            <td>{{user.uid}}</td>
-            <td>{{user.email }}</td>
-            <td>{{user.role}}</td>
-            <td *ngIf="user.joinDate; else blankJoinDate">{{user.joinDate.toDate() | date: 'dd-MM-yyyy HH:mm:ss'}}</td>
+            <td><span class="p-column-title" style="font-weight: bolder">ID</span>{{user.uid}}</td>
+            <td><span class="p-column-title" style="font-weight: bolder">Email</span>{{user.email }}</td>
+            <td><span class="p-column-title" style="font-weight: bolder">Role</span>{{user.role}}</td>
+            <td *ngIf="user.joinDate; else blankJoinDate">
+              <span class="p-column-title" style="font-weight: bolder">Last signed in</span>
+              {{user.joinDate.toDate() | date: 'dd-MM-yyyy HH:mm:ss'}}
+            </td>
             <ng-template #blankJoinDate>
-              <td>{{user.joinDate}}</td>
+              <td><span class="p-column-title" style="font-weight: bolder">Last signed in</span>
+                {{user.joinDate}}</td>
             </ng-template>
             <td>
               <button pButton icon="pi pi-pencil" class="p-button-outlined mr-2 p-2"
