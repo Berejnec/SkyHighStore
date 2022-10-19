@@ -107,9 +107,9 @@
 
   <div class="container">
     <form #productForm="ngForm">
-      <div class="d-flex flex-column">
+      <div class="d-flex flex-column mt-2">
         <label>Product Name</label>
-        <input class="form-control" name="productName"
+        <input class="form-control mt-2" name="productName"
                #name
                id="productName"
                [value]="precompleteName"
@@ -117,20 +117,19 @@
                placeholder="Product Name" required>
       </div>
 
-      <div class="d-flex flex-column">
+      <div class="d-flex flex-column mt-2">
         <label>Details</label>
-        <input [value]="precompleteDetails" #details id="details" pInputText class="form-control" name="details"
+        <input [value]="precompleteDetails" #details id="details" pInputText class="form-control mt-2" name="details"
                placeholder="Details">
-        <span>{{details.disabled}}</span>
       </div>
 
-      <div class="d-flex flex-column mb-2">
+      <div class="d-flex flex-column mb-2 mt-2">
         <label>Price</label>
         <div class="input-group">
           <div class="input-group-addon">
             <i class="bi bi-currency-dollar"></i>
           </div>
-          <input [value]="precompletePrice" id="price" pInputText class="form-control full-width" name="price" #price
+          <input [value]="precompletePrice" id="price" pInputText class="form-control full-width mt-2" name="price" #price
                  placeholder="Price" required>
         </div>
       </div>
