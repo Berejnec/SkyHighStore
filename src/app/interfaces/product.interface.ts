@@ -5,5 +5,6 @@ export interface IProduct {
   addedAt?: Date,
   details?: string,
   imageUrl?: string,
-  type?: string
+  type?: string,
+  oldPrice?: string
 }

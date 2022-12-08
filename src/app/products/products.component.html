@@ -1,4 +1,11 @@
-<h1>Products <span style="font-size: 1.2rem; font-style: italic">by Sky High Store</span></h1>
+<div class="d-flex justify-content-between align-items-center" style="">
+  <h1>Products <span style="font-size: 1.2rem; font-style: italic">by Sky High Store</span></h1>
+
+  <div class="d-flex flex-column justify-content-center align-items-center">
+    <h3>Catch the latest promo offers of December 2022!</h3>
+    <button pButton label="Promo page" (click)="goToPromoPage()"></button>
+  </div>
+</div>
 <div class="card-2">
   <p-dataView #dv [value]="products" [paginator]="true" [rows]="6" filterBy="productName" layout="grid">
 
@@ -33,7 +40,13 @@
     <ng-template let-product pTemplate="gridItem">
       <div class="col-12 col-lg-4 col-md-6 col-sm-12 mt-4 d-inline-flex flex-column">
         <div class="product-grid-item card-2 full-width full-height">
+
+
           <div class="product-grid-item-top">
+<!--            <div *ngIf="product.type==='laptop'" style="">-->
+<!--              <p-badge (click)="goToPromoPage()" [value]="'10% off with Promo Code'" size="large" ></p-badge>-->
+<!--            </div>-->
+<!--            <p-badge [value]="'Promo -10%'"></p-badge>-->
             <img [src]="product.imageUrl" alt="product">
             <div>
 

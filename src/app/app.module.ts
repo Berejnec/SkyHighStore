@@ -43,6 +43,10 @@ import { EditProductDialogComponent } from './admin/edit-product-dialog/edit-pro
 import {OrderListModule} from "primeng/orderlist";
 import {DropdownModule} from "primeng/dropdown";
 import {AvatarModule} from "primeng/avatar";
+import { AboutComponent } from './about/about.component';
+import {ImageModule} from "primeng/image";
+import {BadgeModule} from "primeng/badge";
+import { PromoComponent } from './promo/promo.component';
 
 @NgModule({
   declarations: [
@@ -55,34 +59,38 @@ import {AvatarModule} from "primeng/avatar";
     SignUpComponent,
     SignInComponent,
     NotFoundComponent,
-    EditProductDialogComponent
+    EditProductDialogComponent,
+    AboutComponent,
+    PromoComponent
   ],
-    imports: [
-        BrowserModule,
-        HttpClientModule,
-        AppRoutingModule,
-        AngularFireModule.initializeApp(environment.firebase),
-        provideFirestore(() => getFirestore()),
-        provideFirebaseApp(() => initializeApp(environment.firebase)),
-        AngularFirestoreModule,
-        ButtonModule,
-        InputTextModule,
-        MenubarModule,
-        ToolbarModule,
-        CardModule,
-        FileUploadModule,
-        SkeletonModule,
-        TableModule,
-        DialogModule,
-        BrowserAnimationsModule,
-        ToastModule,
-        FormsModule,
-        DataViewModule,
-        OrderListModule,
-        DropdownModule,
-        ReactiveFormsModule,
-        AvatarModule
-    ],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    provideFirestore(() => getFirestore()),
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    AngularFirestoreModule,
+    ButtonModule,
+    InputTextModule,
+    MenubarModule,
+    ToolbarModule,
+    CardModule,
+    FileUploadModule,
+    SkeletonModule,
+    TableModule,
+    DialogModule,
+    BrowserAnimationsModule,
+    ToastModule,
+    FormsModule,
+    DataViewModule,
+    OrderListModule,
+    DropdownModule,
+    ReactiveFormsModule,
+    AvatarModule,
+    ImageModule,
+    BadgeModule
+  ],
   providers: [AuthService, MessageService],
   bootstrap: [AppComponent]
 })

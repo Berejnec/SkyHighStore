@@ -51,6 +51,11 @@ export class NavbarComponent implements OnInit {
           routerLink: ['/products'],
         },
         {
+          label: 'About us',
+          icon: 'pi pi-comments',
+          routerLink: ['/about']
+        },
+        {
           label: 'Cart',
           icon: 'pi pi-shopping-cart',
           routerLink: ['/cart'],

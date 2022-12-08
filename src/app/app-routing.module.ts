@@ -8,6 +8,8 @@ import {AdminUsersComponent} from "./admin/admin-users/admin-users.component";
 import {SignUpComponent} from "./sign-up/sign-up.component";
 import {SignInComponent} from "./sign-in/sign-in.component";
 import {NotFoundComponent} from "./not-found/not-found.component";
+import {AboutComponent} from "./about/about.component";
+import {PromoComponent} from "./promo/promo.component";
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'sign-in'},
@@ -22,6 +24,8 @@ const routes: Routes = [
   {path: 'cart', component: CartComponent},
   {path: 'sign-up', component: SignUpComponent},
   {path: 'sign-in', component: SignInComponent},
+  {path: 'about', component: AboutComponent},
+  {path: 'promo', component: PromoComponent},
   {path: '**', component: NotFoundComponent}
 ];
 

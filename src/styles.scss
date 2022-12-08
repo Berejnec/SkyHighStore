@@ -207,6 +207,22 @@ h1 {
   }
 }
 
+.pi-telegram, .pi-facebook, .pi-instagram {
+  color: white !important;
+
+  @media screen and (max-width: 960px) {
+    color: black !important;
+  }
+}
+
+.pi-comments {
+  color: white !important;
+
+  @media screen and (max-width: 960px) {
+    color: black !important;
+  }
+}
+
 .p-dataview-emptymessage {
 }
 

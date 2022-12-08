@@ -6,6 +6,7 @@ import {ProductService} from "../services/product.service";
 import {AuthService} from "../services/auth.service";
 import {CartService} from "../services/cart.service";
 import {MessageService} from "primeng/api";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-products',
@@ -22,6 +23,7 @@ export class ProductsComponent implements OnInit {
               public authService: AuthService,
               private productService: ProductService,
               private messageService: MessageService,
+              private router: Router,
               private cartService: CartService) {
     this.authService.getUserUid();
   }
@@ -43,5 +45,9 @@ export class ProductsComponent implements OnInit {
         life: 4000
       })
     })
+  }
+
+  goToPromoPage() {
+    this.router.navigate(['promo'])
   }
 }

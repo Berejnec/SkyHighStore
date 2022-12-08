@@ -1,0 +1,79 @@
+<h1>December 2022 Promo Offers</h1>
+
+<h2 style="font-size: 1.8rem; font-style: italic; color: #d3d1d1">Take the unique chance to buy these products on the best price of the year!</h2>
+
+<p-dataView #dv [value]="products" [paginator]="true" [rows]="6" filterBy="productName" layout="list">
+
+  <ng-template pTemplate="header">
+    <div class="d-flex flex-column">
+      <span class="p-input-icon-left mb-2 md:mb-0">
+                  <i class="pi pi-search"></i>
+                  <input #inputValue type="search" class="full-width" pInputText placeholder="Search by Name"
+                         (input)="dv.filter(inputValue.value)">
+              </span>
+<!--      <p-dataViewLayoutOptions></p-dataViewLayoutOptions>-->
+    </div>
+  </ng-template>
+
+  <ng-template let-product pTemplate="listItem">
+    <div class="col-12">
+      <div class="product-list-item">
+        <img [src]="product.imageUrl" alt="productImage">
+        <div class="product-list-detail">
+          <div class="product-name">{{product.productName}}</div>
+          <div class="product-description">{{product.details}}</div>
+          <div class="d-flex">
+            <span style="text-decoration: line-through" class="product-price mr-2">{{product.oldPrice | currency: 'USD'}}</span>
+            <span style="color: green" class="product-price">{{product.price | currency: 'USD'}}</span>
+          </div>
+
+        </div>
+        <div class="product-list-action">
+          <button pButton label="Add to Cart" class="p-button-raised text-center full-width"
+                  (click)="addToCart(product)"></button>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template let-product pTemplate="gridItem">
+    <div class="col-12 col-lg-4 col-md-6 col-sm-12 mt-4 d-inline-flex flex-column">
+      <div class="product-grid-item card-2 full-width full-height">
+
+
+        <div class="product-grid-item-top">
+          <!--            <div *ngIf="product.type==='laptop'" style="">-->
+          <!--              <p-badge (click)="goToPromoPage()" [value]="'10% off with Promo Code'" size="large" ></p-badge>-->
+          <!--            </div>-->
+          <!--            <p-badge [value]="'Promo -10%'"></p-badge>-->
+          <img [src]="product.imageUrl" alt="product">
+          <div>
+
+              <span *ngIf="product.type==='PC'; else notPC" style="font-weight: bolder"><i class="pi pi-tag product-category-icon"></i>
+                {{product.type}}
+              </span>
+
+            <ng-template #notPC>
+                <span style="font-weight: bolder"><i class="pi pi-tag product-category-icon"></i>
+                  {{product.type | titlecase}}
+                </span>
+            </ng-template>
+
+          </div>
+        </div>
+        <div class="product-grid-item-content">
+          <div class="product-name">{{product.productName}}</div>
+          <div class="product-description">{{product.details}}</div>
+        </div>
+        <div class="product-grid-item-bottom">
+          <span class="product-price">{{product.price | currency: 'USD'}}</span>
+          <button pButton pTooltip="Add to Cart" tooltipPosition="top" icon="pi pi-shopping-cart"
+                  class="p-button-raised cart-button products-cart"
+                  (click)="addToCart(product)"></button>
+        </div>
+      </div>
+
+    </div>
+  </ng-template>
+</p-dataView>
+
