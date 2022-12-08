@@ -35,7 +35,7 @@ export class NavbarComponent implements OnInit {
           if(res.role) {
             this.role = res.role;
             this.tooltipMessage = this.role + ': ';
-            this.items[2].visible = this.role === 'Admin';
+            this.items[3].visible = this.role === 'Admin';
           }
           if(res.email) {
             this.email = res.email;
