@@ -125,6 +125,27 @@ export class AdminComponent implements OnInit {
       case 'PC':
         addProduct.imageUrl = 'https://s13emagst.akamaized.net/products/43120/43119688/images/res_053354505967a6e29744d21ec798c850.jpg?width=450&height=450&hash=4F1B788DDEDB06F8E35F0A1F637C1F56';
         break;
+      case 'keyboard':
+        addProduct.imageUrl = 'https://s13emagst.akamaized.net/products/31566/31565621/images/res_04be55c67c55ac1d40bc285f0e434cd2.jpg?width=720&height=720&hash=3BD83503568D3E230EFB94B0BAD7566F';
+        break;
+      case 'lenovo':
+        addProduct.imageUrl = 'https://s13emagst.akamaized.net/products/38277/38276901/images/res_39d5ba539280c46fceddffabc9ea79d9.jpg?width=720&height=720&hash=661893D9D85F14CA25EB10339F625964';
+        break;
+      case 'macbook':
+        addProduct.imageUrl = 'https://s13emagst.akamaized.net/products/33874/33873196/images/res_2ce18bde5ec79adc307a8d4fc03e40a3.jpg?width=450&height=450&hash=36E0AD827269108B1960B2D568C73060';
+        break;
+      case 'monitor':
+        addProduct.imageUrl = 'https://s13emagst.akamaized.net/products/32274/32273347/images/res_0daaac9c75cfb02fed49048f8dcc2826.jpg?width=720&height=720&hash=9BB570D80EBF03F8C585F1758E436B51';
+        break;
+      case 'sound':
+        addProduct.imageUrl = 'https://s13emagst.akamaized.net/products/38636/38635456/images/res_4d102e751c9920905628cf1d29c8be31.jpg?width=720&height=720&hash=6B13DD4AB0670355E5285764790D7759';
+        break;
+      case 'microphone':
+        addProduct.imageUrl = 'https://s13emagst.akamaized.net/products/42922/42921535/images/res_c303e06395cbf02fb8aa04e8adb4ad2d.jpg?width=720&height=720&hash=58399CCE65F1628CDD8D5528EB1F3BD1';
+        break;
+      case 'camera':
+        addProduct.imageUrl = 'https://s13emagst.akamaized.net/products/47791/47790732/images/res_87e86214562d35cc8f3eaeea2b446f0a.jpg?width=720&height=720&hash=33E2D12944E81D298ED5676CBC5458DD';
+        break;
     }
 
     this.addProduct(addProduct);
